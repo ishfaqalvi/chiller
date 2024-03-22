@@ -1,0 +1,33 @@
+/* Responsive */
+
+@media screen and (max-width: 820px) {
+ #section-template--10 .wrapper-content h2 {
+        color: #CAC5A6;
+        font: normal normal bold 150px / 23px Teko;
+        margin-bottom: 60px;
+        font-size: 90px;
+    }
+    footer .top-content .right form button {
+        padding: 11px 23px;
+        border: none;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    footer .top-content .left .footer-menu a, footer .bottom-content .left a {
+        font-size: 12px;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+#section-template--10 .wrapper-content h2 {
+        font-size: 45px;
+    }
+    .button--primary {
+        padding: 10px 25px;
+    }
+
+
+
+}

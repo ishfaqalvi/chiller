@@ -1,0 +1,39 @@
+.inner-wrap {
+    display: flex;
+    column-gap: 40px;
+}
+.download-wrap {
+    padding-top: 20px;
+    display: flex;
+}
+.account-left {
+    width: 50%;
+}
+.account-right {
+    width: 50%;
+}
+.download-wrap h6 {
+    color: #000000;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    font-family: 'Poppins';
+}
+.download-wrap p {
+    color: #000000;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 400;
+    font-family: 'Poppins';
+    margin-bottom: 16px;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .inner-wrap {
+        display: flex;
+        column-gap: 40px;
+        flex-wrap: wrap;
+    }
+}
