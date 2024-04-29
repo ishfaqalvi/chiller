@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\{Customer,CustomerBillingInformation};
 
 class CustomerController extends Controller
 {
@@ -30,6 +30,21 @@ class CustomerController extends Controller
     {
         auth('customers')->user()->update($request->all());
         return redirect()->back()->with('success','Profile updated successfully!');
+    }
+
+    /**
+     * Validate the request and Log in the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function billingInfo(Request $request)
+    {
+        CustomerBillingInformation::updateOrCreate(
+            ['customer_id' => auth('customers')->user()->id],
+            $request->all()
+        );
+        return redirect()->back()->with('success','Billing info updated successfully!');
     }
 
     /**

@@ -31,24 +31,22 @@
             <h5 class="mb-0">{{ __('Show') }} Blog</h5>
         </div>
         <div class="card-body">
-            
-                        <div class="form-group mb-3">
-                            <strong>Title:</strong>
-                            {{ $blog->title }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <strong>Thumbnail:</strong>
-                            {{ $blog->thumbnail }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <strong>Description:</strong>
-                            {{ $blog->description }}
-                        </div>
-                        <div class="form-group mb-3">
-                            <strong>Detail:</strong>
-                            {{ $blog->detail }}
-                        </div>
-
+            <div class="form-group mb-3">
+                <strong>Thumbnail:</strong>
+                <img src="{{ $blog->thumbnail }}">
+            </div>
+            <div class="form-group mb-3">
+                <strong>Title:</strong>
+                {{ $blog->title }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Description:</strong>
+                {{ $blog->description }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Detail:</strong>
+                {!! $blog->detail !!}
+            </div>
         </div>
     </div>
 </div>

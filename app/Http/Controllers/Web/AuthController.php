@@ -60,7 +60,8 @@ class AuthController extends Controller
         if (Auth::guard('customers')->attempt($credentials)) {
             redirect()->route('customer.profile');
         }
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+
+        return redirect()->route('web.login')->with('error', 'The provided credentials do not match our records.');
     }
 
     /**

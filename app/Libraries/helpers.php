@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Chiller;
 use App\Models\Setting;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
@@ -14,7 +15,7 @@ function uploadFile($file, $path, $width, $height)
 {
     $extension = $file->getClientOriginalExtension();
     $name = uniqid().".".$extension;
- 
+
     $folder = 'upload/images/'.$path;
     $finalPath = $folder.'/'.$name;
     $file->move($folder, $name);
@@ -31,4 +32,14 @@ function uploadFile($file, $path, $width, $height)
 function settings($key)
 {
     return Setting::get($key);
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function chillers()
+{
+    return Chiller::get();
 }

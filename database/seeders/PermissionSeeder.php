@@ -8,62 +8,86 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
-      /**
-      * Run the database seeds.
-      *
-      * @return void
-      */
-      public function run()
-      {
-            $permissions = [
-                  'customers-list', 
-                  'customers-view', 
-                  'customers-create', 
-                  'customers-edit', 
-                  'customers-delete',
+    /**
+     * Run the database seeds.
+    *
+    * @return void
+    */
+    public function run()
+    {
+        $permissions = [
+            'chillers-list',
+            'chillers-view',
+            'chillers-create',
+            'chillers-edit',
+            'chillers-delete',
 
-                  'blogs-list', 
-                  'blogs-view', 
-                  'blogs-create', 
-                  'blogs-edit', 
-                  'blogs-delete',
-                  
-                  'roles-list', 
-                  'roles-view', 
-                  'roles-create', 
-                  'roles-edit', 
-                  'roles-delete',
+            'customers-list',
+            'customers-view',
+            'customers-create',
+            'customers-edit',
+            'customers-delete',
 
-                  'users-list', 
-                  'users-view', 
-                  'users-create', 
-                  'users-edit', 
-                  'users-delete',
+            'projects-list',
+            'projects-view',
+            'projects-create',
+            'projects-edit',
+            'projects-delete',
 
-                  'notifications-list', 
-                  'notifications-view', 
-                  'notifications-create', 
-                  'notifications-edit', 
-                  'notifications-delete',
+            'blogs-list',
+            'blogs-view',
+            'blogs-create',
+            'blogs-edit',
+            'blogs-delete',
 
-                  'audits-list', 
-                  'audits-view', 
-                  'audits-create', 
-                  'audits-edit', 
-                  'audits-delete',
+            'brands-list',
+            'brands-view',
+            'brands-create',
+            'brands-edit',
+            'brands-delete',
 
-                  'logs-list', 
-                  'logs-view', 
-                  'logs-create', 
-                  'logs-edit', 
-                  'logs-delete',
+            'models-list',
+            'models-view',
+            'models-create',
+            'models-edit',
+            'models-delete',
 
-                  'settings-list',
-                  'settings-create',
-            ];
-        
-            foreach ($permissions as $permission) {
-                  Permission::create(['name' => $permission]);
-            }
-      }
+            'roles-list',
+            'roles-view',
+            'roles-create',
+            'roles-edit',
+            'roles-delete',
+
+            'users-list',
+            'users-view',
+            'users-create',
+            'users-edit',
+            'users-delete',
+
+            'notifications-list',
+            'notifications-view',
+            'notifications-create',
+            'notifications-edit',
+            'notifications-delete',
+
+            'audits-list',
+            'audits-view',
+            'audits-create',
+            'audits-edit',
+            'audits-delete',
+
+            'logs-list',
+            'logs-view',
+            'logs-create',
+            'logs-edit',
+            'logs-delete',
+
+            'settings-list',
+            'settings-create',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+    }
 }

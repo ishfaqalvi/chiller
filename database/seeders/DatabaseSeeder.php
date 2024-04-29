@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionSeeder::class);
         $this->call(AdminUserSeeder::class);
+        $this->call(BrandSeeder::class);
+        $this->call(ModelSeeder::class);
+        $this->call(ChillerSeeder::class);
+        $this->call(BlogSeeder::class);
         $this->call(SettingsSeeder::class);
     }
 }

@@ -9,6 +9,14 @@
         <span>Dashboard</span>
     </a>
 </li>
+@can('chillers-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/chillers*') ? 'active' : ''}}" href="{{ route('chillers.index') }}">
+        <i class="ph-book"></i>
+        <span>Chiller</span>
+    </a>
+</li>
+@endcan
 @can('customers-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->is('admin/customers*') ? 'active' : ''}}" href="{{ route('customers.index') }}">
@@ -17,11 +25,35 @@
     </a>
 </li>
 @endcan
+@can('projects-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/projects*') ? 'active' : ''}}" href="{{ route('projects.index') }}">
+        <i class="ph-users-three"></i>
+        <span>Projects</span>
+    </a>
+</li>
+@endcan
 @can('blogs-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->is('admin/blogs*') ? 'active' : ''}}" href="{{ route('blogs.index') }}">
         <i class="ph-book"></i>
         <span>Blogs</span>
+    </a>
+</li>
+@endcan
+@can('brands-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/brands*') ? 'active' : ''}}" href="{{ route('brands.index') }}">
+        <i class="ph-book"></i>
+        <span>Brands</span>
+    </a>
+</li>
+@endcan
+@can('models-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/models*') ? 'active' : ''}}" href="{{ route('models.index') }}">
+        <i class="ph-book"></i>
+        <span>Models</span>
     </a>
 </li>
 @endcan

@@ -14,6 +14,21 @@ Route::get('dashboard', DashboardController::class)->name('dashboard');
 | Customer Routes
 |--------------------------------------------------------------------------
 */
+Route::controller(ChillerController::class)->prefix('chillers')->as('chillers.')->group(function () {
+	Route::get('list',				 	'index'	 	)->name('index'  	);
+	Route::get('create',			 	'create'	)->name('create' 	);
+	Route::post('store',			 	'store'	 	)->name('store'  	);
+	Route::get('edit/{id}',			 	'edit'		)->name('edit'	  	);
+	Route::get('show/{id}',			 	'show'		)->name('show'	  	);
+	Route::patch('update/{chiller}',    'update'	)->name('update' 	);
+	Route::delete('delete/{id}',	 	'destroy' 	)->name('destroy'	);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+*/
 Route::controller(CustomerController::class)->prefix('customers')->as('customers.')->group(function () {
 	Route::get('list',				 	'index'	 	)->name('index'  	);
 	Route::get('create',			 	'create'	)->name('create' 	);
@@ -27,18 +42,39 @@ Route::controller(CustomerController::class)->prefix('customers')->as('customers
 
 /*
 |--------------------------------------------------------------------------
+| Project Routes
+|--------------------------------------------------------------------------
+*/
+Route::controller(ProjectController::class)->prefix('projects')->as('projects.')->group(function () {
+	Route::get('list',				 	'index'	 	)->name('index'  	);
+	Route::get('create',			 	'create'	)->name('create' 	);
+	Route::post('store',			 	'store'	 	)->name('store'  	);
+	Route::get('edit/{id}',			 	'edit'		)->name('edit'	  	);
+	Route::get('show/{id}',			 	'show'		)->name('show'	  	);
+	Route::patch('update/{project}',   'update'	    )->name('update' 	);
+	Route::delete('delete/{id}',	 	'destroy' 	)->name('destroy'	);
+});
+
+/*
+|--------------------------------------------------------------------------
 | Blogs Routes
 |--------------------------------------------------------------------------
 */
-Route::controller(BlogController::class)->prefix('blogs')->as('blogs.')->group(function () {
-	Route::get('list',				'index'	 	)->name('index'  	);
-	Route::get('create',			'create'	)->name('create' 	);
-	Route::post('store',			'store'	 	)->name('store'  	);
-	Route::get('edit/{id}',			'edit'		)->name('edit'	  	);
-	Route::get('show/{id}',			'show'		)->name('show'	  	);
-	Route::patch('update/{blog}',   'update'	)->name('update' 	);
-	Route::delete('delete/{id}',	'destroy' 	)->name('destroy'	);
-});
+Route::resource('blogs', BlogController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Brands Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('brands', BrandController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Models Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('models', ModelController::class);
 
 /*
 |--------------------------------------------------------------------------

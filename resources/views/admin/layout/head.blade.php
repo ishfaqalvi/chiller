@@ -26,6 +26,7 @@
 <script src="{{ asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
 <script src="{{ asset('assets/demo/dropify/js/dropify.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/editors/ckeditor/ckeditor_classic.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/editors/quill/quill.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/demo/pages/datatables_basic.js') }}"></script>

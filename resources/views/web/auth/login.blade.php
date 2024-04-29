@@ -24,11 +24,10 @@
         <div class="col-lg-6 col-md-6 col-sm-12 login-form-bg" style="background-image: url({{ asset('assets/web/images/form-bg.png') }});">
             <div class="login-form">
                 <h4>Sign in</h4>
-                <form action="{{ route('web.login') }}" method="POST">
+                <form action="{{ route('web.login') }}" method="POST" id="validate">
                     @csrf
                     <div class="email-field">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="eureka22@email.com" id="email" name="email" required>
+                        <input type="email" placeholder="Email Address" id="email" name="email" required>
                     </div>
                     <div class="pswrd-field">
                         <input type="password" placeholder="Password" id="password" name="password" required>
@@ -69,4 +68,29 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#validate").validate({
+        errorClass: 'invalid',
+        successClass: 'success',
+        validClass: 'success',
+        errorElement: 'span',
+        errorClass: 'error',
+        highlight: function(element) {
+            $(element).removeClass('success');
+            $(element).addClass('invalid');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('invalid');
+            $(element).addClass('success');
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+        }
+    });
+});
+</script>
 @endsection

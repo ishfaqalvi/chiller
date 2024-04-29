@@ -37,10 +37,10 @@
                     @csrf
                     <div class="form-field-wrap">
                         <div class="fname-field">
-                            <input type="text" placeholder="Eureka" id="fname" name="first_name" required>
+                            <input type="text" placeholder="First Name" id="fname" name="first_name" required>
                         </div>
                         <div class="lname-field">
-                            <input type="text" placeholder="Seken" id="lname" name="last_name" required>
+                            <input type="text" placeholder="Last Name" id="lname" name="last_name" required>
                         </div>
                     </div>
                     <div class="form-field-wrap">
@@ -160,7 +160,7 @@ $(document).ready(function() {
             email:{
                 "remote":
                 {
-                    url: "{{ route('web.checkEmail') }}",
+                    url: "{{ route('web.checkEmail') }}", 
                     type: "POST",
                     data: {
                         _token:_token,

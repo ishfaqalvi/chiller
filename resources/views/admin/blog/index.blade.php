@@ -36,8 +36,8 @@
             <thead class="thead">
                 <tr>
                     <th>No</th>
-					<th>Title</th>
 					<th>Thumbnail</th>
+					<th>Title</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -45,8 +45,8 @@
             @foreach ($blogs as $key => $blog)
                 <tr>
                     <td>{{ ++$key }}</td>
+					<td><img src="{{ $blog->thumbnail }}" width="150px"></td>
 					<td>{{ $blog->title }}</td>
-					<td>{{ $blog->thumbnail }}</td>
                     <td class="text-center">@include('admin.blog.actions')</td>
                 </tr>
             @endforeach

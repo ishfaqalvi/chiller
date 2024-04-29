@@ -73,17 +73,17 @@ section#calculator-form h6 {
     margin-right: 20px;
 }
 .calculte-btn {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.calculte-btn button {
     width: 438px;
     height: 55px;
     background-color: #00303C;
     padding: 10px;
     border-radius: 10px;
     margin: 0 auto;
-    margin-top: 4rem;
-    text-align: center;
-}
-
-.calculte-btn a {
     color: #fff;
     text-align: center;
     text-transform: uppercase;
@@ -142,12 +142,12 @@ section#calculator-form h6 {
 @media screen and (max-width: 480px) {
 .form-fieldwrap.d-flex {
         flex-wrap: wrap;
-    } 
+    }
 .app-banner-wrap {
         flex-wrap: wrap;
         justify-content: center;
         padding-top: 20px;
-    }  
+    }
 .calculte-btn {
         width: 310px;
         height: 55px;
