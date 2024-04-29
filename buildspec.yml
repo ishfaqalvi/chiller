@@ -6,21 +6,16 @@ phases:
       php: 8.2
     commands:
       - apt-get update -y
-      - curl -sS https://getcomposer.org/installer
- | php -- --install-dir=/usr/local/bin --filename=composer
-      - apt-get install -y libpq-dev libzip-dev
-      - apt-get install -y php-pgsql
-      - curl -sS https://getcomposer.org/installer
- -o composer-setup.php
-      - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+      - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      - apt-get install -y libpq-dev libzip-dev php-pgsql
   pre_build:
     commands:
       - composer install
       - npm install
+  build:
+    commands:
+      - composer dump-autoload
 artifacts:
   files:
     - '**/*'
   name: $(date +%Y-%m-%dT%H:%M:%S).zip
-proxy:
-  upload-artifacts: yes
-  logs: yes
