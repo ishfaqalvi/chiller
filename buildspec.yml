@@ -11,7 +11,6 @@ phases:
   pre_build:
     commands:
       - composer install
-      - npm install
   build:
     commands:
       - composer dump-autoload
