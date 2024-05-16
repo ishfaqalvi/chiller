@@ -40,12 +40,23 @@
             @csrf
             <div class="form-fieldwrap d-flex">
                 <div class="field-one">
+                    <label>BRAND OF CHILLER</label><br>
+                    <select name="brand_id" required id="chiller_brand_id">
+                        <option value="">--Select--</option>
+                        @foreach(brands() as $id => $brand)
+                            <option value="{{ $id }}">{{ $brand }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field-one">
+                    <label>MODEL OF CHILLER</label><br>
+                    <select name="model_id" required id="chiller_model_id" disabled>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="field-three">
                     <label>NAME OF CHILLER</label><br>
                     <input type="text" id="" name="name" required>
-                </div>
-                <div class="field-two">
-                    <label>MODEL OF CHILLER</label><br>
-                    <input type="text" id="" name="model" required>
                 </div>
             </div>
             <div class="chiller-one">
@@ -118,5 +129,18 @@
         });
     }
     applyValidation();
+    $(document).ready(function(){
+        $('select[name=brand_id]').change(function () {
+            let id = $(this).val();
+            $('select[name=model_id]').html('<option>--Select--</option>');
+            $.get('/chiller/get_models', {id: id}).done(function (result) {
+                let data = JSON.parse(result);
+                $('select[name=model_id]').prop('disabled', false);
+                $.each(data, function (i, val) {
+                    $('select[name=model_id]').append($('<option></option>').val(val.id).html(val.name));
+                })
+            });
+        });
+    });
 </script>
 @endsection

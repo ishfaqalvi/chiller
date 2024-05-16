@@ -37,11 +37,26 @@ class Project extends Model implements Auditable
      */
     protected $fillable = [
         'customer_id',
+        'project_number',
         'number_of_chillers',
         'building_minimum_load',
         'building_maximum_load',
         'chilled_water_differential'
     ];
+
+    /**
+     * Attributes that should auto genereted.
+     *
+     * @var array
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($model) {
+            $model->project_number = 'IN-' . str_pad($model->id, 6, "0", STR_PAD_LEFT);
+            $model->save();
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

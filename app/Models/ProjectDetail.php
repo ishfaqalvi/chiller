@@ -66,6 +66,4 @@ class ProjectDetail extends Model implements Auditable
     {
         return $this->hasOne('App\Models\Project', 'id', 'project_id');
     }
-
-
 }

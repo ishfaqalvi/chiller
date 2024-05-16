@@ -42,7 +42,7 @@ return [
         ],
         'customers' => [
             'driver' => 'session',
-            'provider' => 'customer',
+            'provider' => 'customers',
         ]
     ],
 
@@ -68,7 +68,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'customer' => [
+        'customers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class,
         ]
@@ -96,6 +96,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'customers' => [
+            'provider' => 'customers', // This should match the provider key under 'providers'
+            'table' => 'password_resets', // This is the database table that stores reset tokens
+            'expire' => 60, // The number of minutes that the reset token should be considered valid
+            'throttle' => 60, // The number of minutes before a password reset token can be resent (if necessary)
+        ]
     ],
 
     /*

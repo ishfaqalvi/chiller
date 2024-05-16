@@ -102,16 +102,16 @@
                     <div class="divider"> <span> or </span> </div>
                     <div class="brand-btns">
                         <div class="google-btn">
-                            <button type="submit" class="btn" id="google">
+                            <a href="{{ route('web.login.google') }}" class="btn" id="google">
                                 <img src="{{ asset('assets/web/images/google.png') }}" width="18px" height="18px">
                                 <span> Google </span>
-                            </button>
+                            </a>
                         </div>
                         <div class="fcbk-btn">
-                            <button type="submit" class="btn" id="facebook">
+                            <a href="{{ route('web.login.facebook') }}" class="btn" id="facebook">
                                 <img src="{{ asset('assets/web/images/facebook.svg') }}" width="25px" height="25px">
                                 <span> Facebook </span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="copyright-txt">

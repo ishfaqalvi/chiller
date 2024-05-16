@@ -15,8 +15,9 @@ class ChillerSeeder extends Seeder
     {
         DB::table('chillers')->insert([
             [
+                'brand_id'                  => 1,
+                'model_id'                  => 1,
                 'name'                      => 'Chiller 1',
-                'model'                     => 'CH1',
                 'chiller_maximum_capacity'  => 3200,
                 'chiller_minimum_capacity'  => 320,
                 'chilled_water_flow'        => 153,
@@ -27,8 +28,9 @@ class ChillerSeeder extends Seeder
                 'status'                    => 'Approved'
             ],
             [
+                'brand_id'                  => 2,
+                'model_id'                  => 2,
                 'name'                      => 'Chiller 2',
-                'model'                     => 'CH2',
                 'chiller_maximum_capacity'  => 3200,
                 'chiller_minimum_capacity'  => 320,
                 'chilled_water_flow'        => 153,
@@ -39,8 +41,9 @@ class ChillerSeeder extends Seeder
                 'status'                    => 'Approved'
             ],
             [
+                'brand_id'                  => 3,
+                'model_id'                  => 3,
                 'name'                      => 'Chiller 3',
-                'model'                     => 'CH3',
                 'chiller_maximum_capacity'  => 2200,
                 'chiller_minimum_capacity'  => 220,
                 'chilled_water_flow'        => 105,
@@ -51,8 +54,9 @@ class ChillerSeeder extends Seeder
                 'status'                    => 'Approved'
             ],
             [
+                'brand_id'                  => 4,
+                'model_id'                  => 4,
                 'name'                      => 'Chiller 4',
-                'model'                     => 'CH4',
                 'chiller_maximum_capacity'  => 2500,
                 'chiller_minimum_capacity'  => 250,
                 'chilled_water_flow'        => 120,

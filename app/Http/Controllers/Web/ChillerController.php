@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Models;
 use App\Models\Chiller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,8 +31,17 @@ class ChillerController extends Controller
     public function store(Request $request)
     {
         Chiller::create($request->all());
-
+        
         return redirect()->route('customer.profile')->with('success', 'Your request received successfully!');
+    }
+    
+    /**
+     * Get the specified resource in storage.
+     */
+    public function getModels(Request $request)
+    {
+        $data = Models::whereBrandId($request->id)->get();
+        echo json_encode($data);
     }
 
     /**
@@ -50,13 +60,6 @@ class ChillerController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

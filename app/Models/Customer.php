@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -27,7 +28,7 @@ class Customer extends Authenticatable implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-    use HasApiTokens;
+    use HasApiTokens, Notifiable;
 
     protected $guard = 'customers';
 
@@ -60,6 +61,17 @@ class Customer extends Authenticatable implements Auditable
     protected $hidden = [
         'password'
     ];
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Notifications\ResetPasswordNotification($token));
+    }
 
     /**
      * The set attributes.

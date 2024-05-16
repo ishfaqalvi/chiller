@@ -22,15 +22,32 @@
                         <h4>{{ $customer->first_name.' '. $customer->last_name }}</h4>
                     </div>
                     <div class="new-project">
-                        <a href="{{ route('projects.create') }}"><h4>NEW PROJECT</h4></a>
-                        <a href="{{ route('projects.index') }}"><h4>VIEW PAST PROJECT</h4></a>
+                        <a href="{{ route('project.create') }}"><h4>NEW PROJECT</h4></a>
+                        <a href="{{ route('project.index') }}"><h4>VIEW PAST PROJECT</h4></a>
                         <h4>TAX INVOICES</h4>
+                        <a href="{{ route('chiller.create') }}"><h4>NEW CHILLER Request</h4></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 profile-content">
                     <h4>PAST PROJECTS</h4>
                     <div class="download-wrap">
-                        <div class="account-left">
+                        <table class="table">
+                            <thead>
+                                <th>DATE</th>
+                                <th>PROJECT NUMBER</th>
+                                <th>FILE</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($projects as $project)
+                                <tr>
+                                    <td>{{ $project->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $project->project_number }}</td>
+                                    <td><a href="{{ route('project.show', $project->id) }}">File</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- <div class="account-left">
                             <div class="inner-wrap">
                                 <div class="inner-left">
                                     <h6>Date</h6>
@@ -69,7 +86,7 @@
                                     <p> file </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

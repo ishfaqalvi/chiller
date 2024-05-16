@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('chillers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('brand_id')->constrained()->onDelete('cascade');
+            $table->foreignId('model_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('model');
             $table->integer('chiller_maximum_capacity');
             $table->integer('chiller_minimum_capacity');
             $table->integer('chilled_water_flow');

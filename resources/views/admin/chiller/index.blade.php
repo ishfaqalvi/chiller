@@ -38,7 +38,7 @@
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Model</th>
+                        <th>Model(Brand)</th>
                         <th>Capacity</th>
                         <th>CHW Flow</th>
                         <th>IPLV</th>
@@ -51,7 +51,7 @@
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>{{ $chiller->name }}</td>
-                        <td>{{ $chiller->model }}</td>
+                        <td>{{ $chiller->model->name.'( '. $chiller->brand->name.' )'}}</td>
                         <td>
                             {{ 'Max => '.$chiller->chiller_maximum_capacity }}</br>
                             {{ 'Min => '.$chiller->chiller_minimum_capacity }}

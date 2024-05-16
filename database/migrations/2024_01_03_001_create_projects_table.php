@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->string('project_number')->nullable();
             $table->integer('number_of_chillers');
             $table->integer('building_minimum_load');
             $table->integer('building_maximum_load');

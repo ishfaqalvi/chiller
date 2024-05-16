@@ -18,13 +18,58 @@ use Illuminate\Support\Facades\Route;
 | Web Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['namespace' => 'App\Http\Controllers\Web'], function () {
-	Route::controller(AuthController::class)->group(function () {
-	    Route::get('register', 		'showRegisterForm')->name('web.showRegisterForm');
-	    Route::post('register', 	'register'		  )->name('web.registger'  	    );
-	    Route::post('check_email', 	'checkEmail'	  )->name('web.checkEmail'  	);
-	    Route::get('login', 		'showLoginForm'	  )->name('web.showLoginForm'	);
-	    Route::post('login', 		'login'			  )->name('web.login'  	   		);
+Route::group(['namespace' => 'App\Http\Controllers\Web\Auth'], function () {
+    /*
+	|--------------------------------------------------------------------------
+	| Register Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::controller(RegisterController::class)->group(function () {
+	    Route::get('register', 		 'showRegisterForm')->name('web.showRegisterForm');
+	    Route::post('register', 	 'register'		   )->name('web.registger'  	 );
+        Route::post('check_email', 	 'checkEmail'	   )->name('web.checkEmail'  	 );
+	});
+
+    /*
+	|--------------------------------------------------------------------------
+	| Login Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::controller(LoginController::class)->group(function () {
+	    Route::get('login', 	'showLoginForm')->name('web.showLoginForm');
+	    Route::post('login',    'login'		   )->name('web.login'  	  );
+	});
+
+    /*
+	|--------------------------------------------------------------------------
+	| Social Login Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::controller(SocialLoginController::class)->group(function () {
+	    Route::get('login/google',           'redirectToGoogleProvider'      )->name('web.login.google'          );
+        Route::get('login/google/callback',  'handleProviderGoogleCallback'  )->name('web.login.googleCallback'  );
+        Route::get('login/facebook',         'redirectToFacebookProvider'    )->name('web.login.facebook'        );
+        Route::get('login/facebook/callback','handleProviderFacebookCallback')->name('web.login.facebookCallback');
+	});
+
+    /*
+	|--------------------------------------------------------------------------
+	| Forgot Password Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::controller(ForgotPasswordController::class)->group(function () {
+	    Route::get('password/reset',   'showLinkRequestForm')->name('web.password.request');
+        Route::post('password/email',  'sendResetLinkEmail' )->name('web.password.email'  );
+	});
+
+    /*
+	|--------------------------------------------------------------------------
+	| Reset Password Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::controller(ResetPasswordController::class)->group(function () {
+	    Route::get('password/reset/{token}', 'showResetForm')->name('web.password.reset' );
+        Route::post('password/reset',        'reset'        )->name('web.password.update');
 	});
 });
 
@@ -98,6 +143,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Web','middleware' => ['web','
 	Route::controller(ChillerController::class)->prefix('chiller')->group(function () {
 		Route::get('list', 		    'index'     )->name('chiller.index'	    );
 		Route::get('create', 	    'create'    )->name('chiller.create'    );
+		Route::get('get_models', 	'getModels' )->name('chiller.models'    );
 		Route::post('store', 	    'store'     )->name('chiller.store'     );
 	});
 });

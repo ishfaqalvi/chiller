@@ -29,5 +29,13 @@ class Models extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['brand_id','name'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function brand()
+    {
+        return $this->hasOne('App\Models\Brand', 'id', 'brand_id');
+    }
 }

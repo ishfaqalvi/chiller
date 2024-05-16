@@ -35,6 +35,10 @@
                 <strong>Name:</strong>
                 {{ $model->name }}
             </div>
+            <div class="form-group mb-3">
+                <strong>Brand:</strong>
+                {{ $model->brand->name }}
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Models\Brand;
 use App\Models\Chiller;
 use App\Models\Setting;
 use Spatie\Image\Image;
@@ -42,4 +43,14 @@ function settings($key)
 function chillers()
 {
     return Chiller::get();
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function brands()
+{
+    return Brand::pluck('name','id');
 }

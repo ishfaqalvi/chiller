@@ -52,15 +52,15 @@
             <div class="form-fieldwrap d-flex">
                 <div class="field-one">
                     <label>BUILDING/FACILITY MINIMUM LOAD (KWR)</label>
-                    <input type="number" id="" name="building_minimum_load" required>
+                    <input type="number" name="building_minimum_load" required min="0">
                 </div>
                 <div class="field-two">
                     <label>BUILDING/FACILITY MAXIMUM LOAD (KWR)</label>
-                    <input type="number" id="" name="building_maximum_load" required>
+                    <input type="number" name="building_maximum_load" required min="0">
                 </div>
                 <div class="field-three">
                     <label>CHILLED WATER DIFFERENTIAL (DEG C)</label>
-                    <input type="number" id="" name="chilled_water_differential" required>
+                    <input type="number" name="chilled_water_differential" required min="0">
                 </div>
             </div>
             @for ($i = 1; $i <= $chiller; $i++)
@@ -80,7 +80,7 @@
                                 data-pl75="{{ $row->partial_load_75 }}"
                                 data-pl100="{{ $row->partial_load_100 }}"
                                 >
-                                {{ $row->name }} ({{ $row->model }})
+                                {{ $row->name }} ({{ $row->model->name }})
                             </option>
                         @endforeach
                     </select>

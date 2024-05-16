@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('project_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('chiller_id')->constrained()->onDelete('cascade');
+            $table->foreignId('chiller_id')->constrained()->onDelete('cascade'); 
             $table->integer('chiller_maximum_capacity');
             $table->integer('chiller_minimum_capacity');
             $table->integer('chilled_water_flow');

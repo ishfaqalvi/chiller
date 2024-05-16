@@ -37,6 +37,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
+                    <th>Brand</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $model->name }}</td>
+                    <td>{{ $model->brand->name }}</td>
                     <td class="text-center">@include('admin.model.actions')</td>
                 </tr>
             @endforeach

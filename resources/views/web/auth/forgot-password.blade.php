@@ -1,7 +1,7 @@
 @extends('web.layout.app')
 
 @section('title')
-    ChillerWise | Login
+    ChillerWise | Forgot Password
 @endsection
 
 @section('head')
@@ -16,28 +16,25 @@
                 <h4>WELCOME BACK TO</h4>
                 <img src="{{ asset('assets/web/images/logo-icon.png') }}" class="icon-img">
                 <p>
-                    We’re glad to have you back. Please enter your login credentials to access your account and continue optimizing your chiller operations with ease. If you have any questions or need assistance, our support team is here to help. Thank you for choosing ChillerWise! 
+                    We’re glad to have you back. Please enter your login credentials to access your account and continue optimizing your chiller operations with ease. If you have any questions or need assistance, our support team is here to help. Thank you for choosing ChillerWise!
                 </p>
                 <p> Login to your account and stay on top of your chiller optimization journey.</p>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 login-form-bg" style="background-image: url({{ asset('assets/web/images/form-bg.png') }});">
             <div class="login-form">
-                <h4>Sign in</h4>
-                <form action="{{ route('web.login') }}" method="POST" id="validate">
+                <h4>Forgot Password</h4>
+                <form action="{{ route('web.password.email') }}" method="POST" id="validate">
                     @csrf
                     <div class="email-field">
                         <input type="email" placeholder="Email Address" id="email" name="email" required>
                     </div>
-                    <div class="pswrd-field">
-                        <input type="password" placeholder="Password" id="password" name="password" required>
-                    </div>
                     <div class="form-btns">
                         <div class="forget-btn">
-                            <a href="{{ route('web.password.request') }}" class="btn" id="forgot">Forgot password?</a>
-                        </div> 
+                            <a href="{{ route('web.showLoginForm') }}" class="btn">Back to login?</a>
+                        </div>
                         <div class="sign-btn">
-                            <button type="submit" class="btn" id="sign" value="Sign in">Sign in</button>
+                            <button type="submit" class="btn" id="sign" value="Sign in">Submit</button>
                         </div>
                     </div>
                     <div class="divider"> <span> or </span> </div>

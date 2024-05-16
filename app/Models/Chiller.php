@@ -30,8 +30,9 @@ class Chiller extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
+        'brand_id',
+        'model_id',
         'name',
-        'model',
         'chiller_maximum_capacity',
         'chiller_minimum_capacity',
         'chilled_water_flow',
@@ -42,4 +43,20 @@ class Chiller extends Model implements Auditable
         'customer_id',
         'status'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function brand()
+    {
+        return $this->hasOne('App\Models\Brand', 'id', 'brand_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function model()
+    {
+        return $this->hasOne('App\Models\Models', 'id', 'model_id');
+    }
 }

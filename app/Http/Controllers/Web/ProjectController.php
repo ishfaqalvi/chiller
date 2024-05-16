@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Web;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf;
+use \Mpdf\Mpdf;
 
 class ProjectController extends Controller
 {
@@ -13,7 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('web.project.index');
+        $projects = Auth::guard('customers')->user()->projects;
+        return view('web.project.index', compact('projects'));
     }
 
     /**
@@ -55,32 +59,12 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::find($id);
-        return view('web.project.show', compact('project'));
-    }
+        $data = $this->calculateResult($id);
+        $html = view('web.project.show', $data)->render();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML($html);
+        return $mpdf->Output('project_report.pdf', 'I');
     }
 
     /**
@@ -94,5 +78,42 @@ class ProjectController extends Controller
         $request->session()->put('numberOfChillers', $request->number);
 
         return response()->json(['message' => 'Chiller selected successfully!']);
+    }
+
+    /**
+     * Calculate the results.
+     */
+    public function calculateResult($id)
+    {
+        $project = Project::find($id);
+        $chillers = [];
+        foreach($project->details as $row)
+        {
+            $chillers[] = [
+                'make_model'   => $row->chiller->model->name,
+                'max_capacity' => $row->chiller_maximum_capacity,
+                'min_capacity' => $row->chiller_minimum_capacity,
+                'water_flow'   => $row->chilled_water_flow,
+                'iplv_25'      => $row->partial_load_25,
+                'iplv_50'      => $row->partial_load_50,
+                'iplv_75'      => $row->partial_load_75,
+                'iplv_100'     => $row->partial_load_100,
+            ];
+        }
+        $data = [
+            'project_number'    => $project->project_number,
+            'project_data'      => $project->created_at,
+            'project_customer'  => $project->customer->first_name.' '.$project->customer->last_name,
+            'building_min_load' => $project->building_minimum_load,
+            'building_max_load' => $project->building_maximum_load,
+            'water_differential'=> $project->chilled_water_differential,
+            'chillers'          => $chillers,
+            'load_steps' => [
+                ['step' => 0, 'upper_bound' => 0, 'chillers' => ['OFF', 'OFF']],
+                ['step' => 1, 'upper_bound' => 100, 'chillers' => ['ON', 'OFF']],
+                // Add more steps as needed
+            ],
+        ];
+        return $data;
     }
 }
