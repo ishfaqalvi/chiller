@@ -14,7 +14,7 @@ class BlogSeeder extends Seeder
     public function run(): void
     {
         $data = [];
-        for($i = 1; $i < 13; $i++) {
+        for($i = 2; $i < 10; $i++) {
             $data[] = [
                 'title'=>'The quick, brown fox jumps over a lazy dog.',
                 'thumbnail'=>'images/blog/'.$i.'.jpg',

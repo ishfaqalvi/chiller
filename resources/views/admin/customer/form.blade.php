@@ -7,7 +7,7 @@
         <div class="row">
             <div class="form-group col-lg-6 mb-3">
                 {{ Form::label('name') }}
-                {{ Form::text('name', $customer->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name','required']) }}
+                {{ Form::text('name', $customer->first_name.' '.$customer->last_name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name','required']) }}
                 {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group col-lg-6 mb-3">
@@ -43,4 +43,3 @@
         </button>
     </div>
 </div>
-    

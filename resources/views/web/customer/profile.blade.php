@@ -6,7 +6,7 @@
 
 @section('head')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/web/css/profile.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/web/css/signup.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/web/css/signup.css') }}"> --}}
 @endsection
 
 @section('content')
@@ -81,7 +81,9 @@
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="propernameLabel">Update Your Account Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -137,20 +139,20 @@
                     <div class="row">
                         <div class="form-group col-lg-4">
                             <label for="oldpassword">Old Password</label>
-                            <input type="password" class="form-control" id="oldpassword" name="old_password" required>
+                            <input type="password" class="form-control" id="oldpassword" name="old_password">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="form-group col-lg-4">
                             <label for="confirm_password">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
@@ -164,7 +166,9 @@
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="propernameLabel">Update Your Billing Information</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -195,7 +199,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
@@ -208,6 +212,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var _token = $("input[name='_token']").val();
+        var oldpassword = $('#oldpassword');
+        var password = $('#password');
         $("#validate").validate({
             errorClass: 'invalid',
             successClass: 'success',
@@ -227,12 +233,12 @@
             },
             rules: {
                 password: {
-                    required: true,
+                    required: function(){if (oldpassword.val().length != 0) {return true}else{return false}},
                     minlength:8,
                     maxlength:15
                 },
                 confirm_password:{
-                    required: true,
+                    required: function(){if (password.val().length != 0) {return true}else{return false}},
                     equalTo: "#password"
                 },
                 email:{

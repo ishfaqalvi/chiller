@@ -15,13 +15,15 @@ Route::get('dashboard', DashboardController::class)->name('dashboard');
 |--------------------------------------------------------------------------
 */
 Route::controller(ChillerController::class)->prefix('chillers')->as('chillers.')->group(function () {
-	Route::get('list',				 	'index'	 	)->name('index'  	);
-	Route::get('create',			 	'create'	)->name('create' 	);
-	Route::post('store',			 	'store'	 	)->name('store'  	);
-	Route::get('edit/{id}',			 	'edit'		)->name('edit'	  	);
-	Route::get('show/{id}',			 	'show'		)->name('show'	  	);
-	Route::patch('update/{chiller}',    'update'	)->name('update' 	);
-	Route::delete('delete/{id}',	 	'destroy' 	)->name('destroy'	);
+	Route::get('list',				 	'index'	 	    )->name('index'  	  );
+	Route::get('create',			 	'create'	    )->name('create' 	  );
+	Route::post('store',			 	'store'	 	    )->name('store'  	  );
+	Route::get('edit/{id}',			 	'edit'		    )->name('edit'	  	  );
+	Route::get('show/{id}',			 	'show'		    )->name('show'	  	  );
+	Route::patch('update/{chiller}',    'update'	    )->name('update' 	  );
+	Route::delete('delete/{id}',	 	'destroy' 	    )->name('destroy'	  );
+    Route::get('get_models', 	        'getModels'     )->name('models'      );
+	Route::post('valid-formula',	    'validFormula'	)->name('validFormula');
 });
 
 /*
@@ -75,6 +77,20 @@ Route::resource('brands', BrandController::class);
 |--------------------------------------------------------------------------
 */
 Route::resource('models', ModelController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Contact Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('contacts', ContactController::class);
+
+/*
+|--------------------------------------------------------------------------
+| News Letters Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('news-letters', NewsLetterController::class);
 
 /*
 |--------------------------------------------------------------------------

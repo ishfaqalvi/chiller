@@ -5,7 +5,10 @@
             <i class="ph-list"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end">
-            <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
+            <a href="{{ route('project.show',$project->id) }}" class="dropdown-item" target="_blank">
+                <i class="ph-eye me-2"></i>{{ __('Show') }}
+            </a>
+            {{-- <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 @can('projects-view')
@@ -23,7 +26,7 @@
                         <i class="ph-trash me-2"></i>{{ __('Delete') }}
                     </button>
                 @endcan
-            </form>
+            </form> --}}
         </div>
     </div>
 </div>

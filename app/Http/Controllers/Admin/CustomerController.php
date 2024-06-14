@@ -57,7 +57,11 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-       $customer = Customer::create($request->all());
+        $input = $request->all();
+        $name = explode(' ', $request->name);
+        $input['first_name'] = $name[0];
+        $input['last_name'] = $name[1];
+        $customer = Customer::create($input);
         return redirect()->route('customers.index')
             ->with('success', 'Customer created successfully.');
     }
@@ -97,7 +101,11 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $customer->update($request->all());
+        $input = $request->all();
+        $name = explode(' ', $request->name);
+        $input['first_name'] = $name[0];
+        $input['last_name'] = $name[1];
+        $customer->update($input);
 
         return redirect()->route('customers.index')
             ->with('success', 'Customer updated successfully');

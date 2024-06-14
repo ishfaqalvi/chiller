@@ -23,8 +23,6 @@ class Blog extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-
-
     protected $perPage = 20;
 
     /**

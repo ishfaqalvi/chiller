@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('partial_load_50');
             $table->integer('partial_load_75');
             $table->integer('partial_load_100');
+            $table->text('formula')->nullable();
             $table->foreignId('customer_id')->nullable()->references('id')->on('customers');
             $table->enum('status',['Pending','Approved','Disabled'])->default('Pending');
             $table->timestamps();

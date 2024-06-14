@@ -39,6 +39,7 @@
                     <th>Email</th>
                     <th>Phone #</th>
                     <th>Orders history</th>
+                    <th>Status</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -74,6 +75,7 @@
                             <a href="#">0 orders</a>
                         </div>
                     </td>
+                    <td>{{ $customer->status }}</td>
                     <td class="text-center">@include('admin.customer.actions')</td>
                 </tr>
                 @empty

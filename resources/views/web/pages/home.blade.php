@@ -12,7 +12,7 @@
 <section id="section-template--1">
     <div class="wrapper-text">
         <h1 class="mb-3">UNLEASH THE POTENTIAL OF INTELLIGENT CHILLER STAGING</h1>
-        <a href="http://" class="button button--primary">CALCULATE NOW</a>
+        <a href="{{ route('project.create') }}" class="button button--primary">CALCULATE NOW</a>
     </div>
     <div class="wrapper-img">
         <img src="{{ asset('assets/web/images/banner.png') }}" alt="" width="100%" height="100%">
@@ -21,7 +21,7 @@
 
 <section id="section-template--2"></section>
 <section id="section-template--3" class="page-width">
-    <div class="wrapper">
+    <div class="wrapper" id="about">
         <div class="left">
             <div class="img-block">
                 <img src="{{ asset('assets/web/images/welcome.png') }}" alt="" height="auto" width="100%">
@@ -48,8 +48,9 @@
 
     </div>
 </section>
+
 <section id="section-template--4" class="page-width">
-    <div class="wrapper">
+    <div class="wrapper" id="how-it-works">
         <div class="left">
             <h2>HOW IT WORKS</h2>
         </div>
@@ -82,7 +83,7 @@
 </section>
 
 <section id="section-template--5" class="page-width">
-    <div class="wrapper">
+    <div class="wrapper" id="price">
         <h2 class="pricing">PRICING</h2>
         <h4>UNLOCK THE POWER OF CHILLERWISE:</h4>
         <h6 class="mt-1">AFFORDABLE PRICING, PROJECT BY PROJECT</h6>
@@ -95,76 +96,50 @@
             $2000<br>
             <span>PER PROJECT</span>
         </h2>
-        <a href="http://" class="button button--primary mt-4">
+        <a href="{{ route('project.create') }}" class="button button--primary mt-4">
             START YOUR FIRST CALCULATION
         </a>
     </div>
 </section>
+
 <section id="section-template--6" class="page-width">
     <h3>LATES NEWS</h3>
-    <div class="wrapper-container">
+    <div class="wrapper-container" id="blog">
+        @foreach($blogs as $blog)
         <div class="wrapper-item">
-            <a href="http://" class="img-box">
-                <img class="card-img rounded-0" src="{{ asset('assets/web/images/banner.png') }}" alt="Suresh Dasari Card"
-                    width="100%" height="100%">
+            <a href="{{ route('web.blogs.show', $blog->id) }}" class="img-box">
+                <img class="card-img rounded-0" src="{{ $blog->thumbnail }}" alt="" width="100%" height="100%">
             </a>
             <div class="wrapper-content">
                 <div class="wrapper-content-text">
-                    <a href="http://">
-                        <h4 class="card-title">
-                            Unlocking Efficiency: The Importance of Chiller Optimization with
-                            ChillerWise
-                        </h4>
+                    <a href="{{ route('web.blogs.show', $blog->id) }}">
+                        <h4 class="card-title">{{ $blog->title }}</h4>
                     </a>
-                    <p class="card-text">
-                        In today’s energy-conscious world,
-                    </p>
+                    <p class="card-text">{{ $blog->description }}</p>
                 </div>
                 <div>
-                    <a href="#" class="read-more">
+                    <a href="{{ route('web.blogs.show', $blog->id) }}" class="read-more">
                         Read more <i class="fa fa-arrow-right ml-2"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="wrapper-item">
-            <a href="http://" class="img-box">
-                <img class="card-img rounded-0" src="{{ asset('assets/web/images/banner.png') }}" alt="Suresh Dasari Card"
-                    width="100%" height="100%">
-            </a>
-            <div class="wrapper-content">
-                <div class="wrapper-content-text">
-                    <a href="http://">
-                        <h4 class="card-title">
-                            The quick, brown fox jumps over a lazy dog.
-                        </h4>
-                    </a>
-                    <p class="card-text">
-                        The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV
-                        quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad
-                        nymph,
-                    </p>
-                </div>
-                <div>
-                    <a href="#" class="read-more">
-                        Read more <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="text-center">
-        <a href="http://" class="button button--primary">
+        <a href="{{ route('web.blogs.index') }}" class="button button--primary">
             VIEW MORE NEWS
         </a>
     </div>
 </section>
+
 <section id="section-template--7" class="page-width">
-    <div class="wrapper">
-        <form action="#" method="post">
-            <input type="text" id="fullName" name="fullName" placeholder="Full Name:" required>
+    <div class="wrapper" id="contact">
+        <form action="{{ route('web.contacts.store') }}" method="post">
+            @csrf
+            <input type="text" id="fullName" name="name" placeholder="Full Name:" required>
             <input type="email" id="email" placeholder="Email Address:" name="email" required>
-            <input type="tel" id="contactNumber" name="contactNumber" placeholder="Contact Number:" required>
+            <input type="tel" id="contactNumber" name="phone" placeholder="Contact Number:" required>
             <textarea id="message" name="message" rows="4" placeholder="Message:" required></textarea>
             <div class="submit-button">
                 <button type="submit" class="button button--primary">Send</button>
@@ -176,21 +151,21 @@
                     <i class="fa fa-location-dot"></i>
                     <div>
                         <h5>OFFICE ADDRESS</h6>
-                            <span>2704 William Street Saratoga <br> Springs, NY 12866</span>
+                        <span>2704 William Street Saratoga <br> Springs, NY 12866</span>
                     </div>
                 </li>
                 <li>
                     <i class="fa fa-message"></i>
                     <div>
                         <h5>OFFICE ADDRESS</h6>
-                            <span>info@chaurus.com <br> support@chaurus.com</span>
+                        <span>info@chaurus.com <br> support@chaurus.com</span>
                     </div>
                 </li>
                 <li>
                     <i class="fa fa-phone"></i>
                     <div>
                         <h5>OFFICE ADDRESS</h6>
-                            <span>+1-202-555-0170 <br> +1-202-555-0121</span>
+                        <span>+1-202-555-0170 <br> +1-202-555-0121</span>
                     </div>
                 </li>
             </ul>

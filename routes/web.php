@@ -81,17 +81,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Web\Auth'], function () {
 Route::group(['namespace' => 'App\Http\Controllers\Web'], function () {
 	/*
 	|--------------------------------------------------------------------------
-	| Home Routes
+	| Pages Routes
 	|--------------------------------------------------------------------------
 	*/
-	Route::get('/', 'HomeController@index')->name('home');
-
-	/*
-	|--------------------------------------------------------------------------
-	| NewsLetter Routes
-	|--------------------------------------------------------------------------
-	*/
-	Route::post('news-letter/store', 'NewsletterController@store');
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/',                 'home'          )->name('home'              );
+        Route::get('privacy-policy',    'privacyPolicy' )->name('privacy-policy'    );
+        Route::get('terms-of-service',  'termsOfService')->name('terms-of-service'  );
+        Route::get('agreement',         'agreement'     )->name('agreement'         );
+    });
 
     /*
 	|--------------------------------------------------------------------------
@@ -102,6 +100,20 @@ Route::group(['namespace' => 'App\Http\Controllers\Web'], function () {
         Route::get('list',          'index' )->name('index');
         Route::get('show/{id}',     'show'  )->name('show' );
     });
+
+    /*
+	|--------------------------------------------------------------------------
+	| NewsLetter Routes
+	|--------------------------------------------------------------------------
+	*/
+	Route::post('news-letter/store', 'NewsletterController@store')->name('web.news-letter.store');
+
+    /*
+	|--------------------------------------------------------------------------
+	| Contact Us Routes
+	|--------------------------------------------------------------------------
+	*/
+    Route::post('contacts/store', 'ContactController@store')->name('web.contacts.store');
 });
 
 /*
@@ -132,6 +144,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Web','middleware' => ['web','
 		Route::get('create', 	    'create'    )->name('project.create'    );
 		Route::post('store', 	    'store'     )->name('project.store'     );
 		Route::get('show/{id}', 	'show'      )->name('project.show'      );
+		Route::get('calculate/{id}','calculate' )->name('project.calculate' );
 		Route::post('set_chiller', 	'setChiller')->name('project.setChiller');
 	});
 

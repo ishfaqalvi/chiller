@@ -31,12 +31,54 @@
             <h5 class="mb-0">{{ __('Show') }} Chiller</h5>
         </div>
         <div class="card-body">
-            
-                        <div class="form-group mb-3">
-                            <strong>Name:</strong>
-                            {{ $chiller->name }}
-                        </div>
-
+            <div class="form-group mb-3">
+                <strong>Brand:</strong>
+                {{ $chiller->brand->name }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Model:</strong>
+                {{ $chiller->model->name }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Name:</strong>
+                {{ $chiller->name }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Formula:</strong>
+                {{ $chiller->formula }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Maximum Capacity:</strong>
+                {{ $chiller->chiller_maximum_capacity }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Minimum Capacity:</strong>
+                {{ $chiller->chiller_maximum_capacity }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Water Flow:</strong>
+                {{ $chiller->chilled_water_flow }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Status:</strong>
+                {{ $chiller->status }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Partial Load 25 %:</strong>
+                {{ $chiller->partial_load_25 }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Partial Load 50 %:</strong>
+                {{ $chiller->partial_load_50 }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Partial Load 75 %:</strong>
+                {{ $chiller->partial_load_75 }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>Partial Load 100 %:</strong>
+                {{ $chiller->partial_load_100 }}
+            </div>
         </div>
     </div>
 </div>

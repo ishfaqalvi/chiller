@@ -22,11 +22,9 @@ class NewsletterController extends Controller
     {
         $check = Newsletter::whereEmail($request->email)->first();
         if ($check) {
-            $response =['state' => 'warning','message' => 'Your email is already exist!'];
-        }else{
-            $newsletter = Newsletter::create($request->all());
-            $response =['state' => 'success','message' => 'Your email is added successfully!'];
+            return redirect()->route('home')->with('warning','Your email is already exist!');
         }
-        return response()->json($response);
+        Newsletter::create($request->all());
+        return redirect()->route('home')->with('success','Your email is added successfully!');
     }
 }

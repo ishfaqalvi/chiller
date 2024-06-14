@@ -52,6 +52,18 @@ class PermissionSeeder extends Seeder
             'models-edit',
             'models-delete',
 
+            'contacts-list',
+            'contacts-view',
+            'contacts-create',
+            'contacts-edit',
+            'contacts-delete',
+
+            'newsLetters-list',
+            'newsLetters-view',
+            'newsLetters-create',
+            'newsLetters-edit',
+            'newsLetters-delete',
+
             'roles-list',
             'roles-view',
             'roles-create',

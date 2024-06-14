@@ -43,6 +43,11 @@
 @section('script')
 <script>
     $(function(){
+        $('.select').select2();
+        var _token = $("input[name='_token']").val();
+        $.validator.addMethod("validFormula", function(value, element) {
+            return this.optional(element) || /^[0-9+\-*/^().x\s]+$/.test(value);
+        }, "Please enter a valid formula with numbers, math signs, and the variable 'x'.");
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -68,7 +73,45 @@
                 }else {
                     error.insertAfter(element);
                 }
+            },
+            rules: {
+                formula: {
+                    required: function(element) {
+                        return $("#status").val() === "Approved";
+                    },
+                    validFormula: true,
+                    "remote":
+                    {
+                        url: "{{ route('chillers.validFormula') }}",
+                        type: "POST",
+                        data: {
+                            _token:_token,
+                            formula: function() {
+                                return $("input[name='formula']").val();
+                            }
+                        },
+                    }
+                }
+            },
+            messages: {
+                formula: {
+                    required: "Please enter a formula",
+                    validFormula: "The formula can only contain numbers, math signs, and the variable 'x'.",
+                    remote: jQuery.validator.format("{0} must be a valid formula..")
+                }
             }
+        });
+        $('select[name=brand_id]').change(function () {
+            let id = $(this).val();
+            $('select[name=model_id]').html('<option>--Select--</option>');
+            $('select[name=model_id]').attr('disabled',false);
+            $.get('/admin/chillers/get_models', {id: id}).done(function (result) {
+                let data = JSON.parse(result);
+                $('select[name=model_id]').prop('disabled', false);
+                $.each(data, function (i, val) {
+                    $('select[name=model_id]').append($('<option></option>').val(val.id).html(val.name));
+                })
+            });
         });
     });
 </script>

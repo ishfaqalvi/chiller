@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="{{ route('home') }}#about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#how-it-works">How it works</a>
+                <a class="nav-link" href="{{ route('home') }}#how-it-works">How it works</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#price">Price</a>
+                <a class="nav-link" href="{{ route('home') }}#price">Price</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" href="{{ route('home') }}#blog">Blog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('web.blogs.index') }}">Blog</a>
+                <a class="nav-link" href="{{ route('home') }}#contact">Contact</a>
             </li>
         </ul>
         <div class="navbar-nav">

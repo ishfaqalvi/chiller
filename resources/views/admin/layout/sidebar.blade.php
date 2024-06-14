@@ -12,7 +12,7 @@
 @can('chillers-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->is('admin/chillers*') ? 'active' : ''}}" href="{{ route('chillers.index') }}">
-        <i class="ph-book"></i>
+        <i class="ph-battery-high"></i>
         <span>Chiller</span>
     </a>
 </li>
@@ -44,7 +44,7 @@
 @can('brands-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->is('admin/brands*') ? 'active' : ''}}" href="{{ route('brands.index') }}">
-        <i class="ph-book"></i>
+        <i class="ph-diamond"></i>
         <span>Brands</span>
     </a>
 </li>
@@ -52,8 +52,24 @@
 @can('models-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->is('admin/models*') ? 'active' : ''}}" href="{{ route('models.index') }}">
-        <i class="ph-book"></i>
+        <i class="ph-flag"></i>
         <span>Models</span>
+    </a>
+</li>
+@endcan
+@can('contacts-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/contacts*') ? 'active' : ''}}" href="{{ route('contacts.index') }}">
+        <i class="ph-chat-centered-text"></i>
+        <span>Contact Us</span>
+    </a>
+</li>
+@endcan
+@can('newsLetters-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->is('admin/news-letters*') ? 'active' : ''}}" href="{{ route('news-letters.index') }}">
+        <i class="ph-address-book"></i>
+        <span>News Letters</span>
     </a>
 </li>
 @endcan
@@ -85,14 +101,14 @@
     <i class="ph-dots-three sidebar-resize-show"></i>
 </li>
 @endcanany
-@can('audits-list')
+{{-- @can('audits-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('notifications*') ? 'active' : ''}}" href="{{ route('notifications.index') }}">
         <i class="ph-bell"></i>
         <span>Notifications</span>
     </a>
 </li>
-@endcan
+@endcan --}}
 @can('audits-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('audits*') ? 'active' : ''}}" href="{{ route('audits.index') }}">
@@ -109,9 +125,9 @@
     </a>
 </li>
 @endcan
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('settings*') ? 'active' : ''}}" href="{{ route('settings.index') }}">
         <i class="ph-gear"></i>
         <span>Settings</span>
     </a>
-</li>
+</li> --}}

@@ -55,6 +55,6 @@ class ForgotPasswordController extends Controller
             ? back()->with('success', __($response))
             : back()->with('error', __($response));
         }
-        return redirect()->route('web.showForgotPasswordForm')->with('error', 'No account found with the provided email.');
+        return redirect()->back()->with('error', 'No account found with the provided email.');
     }
 }

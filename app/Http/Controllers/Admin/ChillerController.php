@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
+use App\Models\Models;
 
 use App\Models\Chiller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 /**
  * Class ChillerController
@@ -114,5 +116,29 @@ class ChillerController extends Controller
 
         return redirect()->route('chillers.index')
             ->with('success', 'Chiller deleted successfully');
+    }
+
+    /**
+     * Get the specified resource in storage.
+     */
+    public function getModels(Request $request)
+    {
+        $data = Models::whereBrandId($request->id)->get();
+        echo json_encode($data);
+    }
+
+    /**
+     * Get the specified resource in storage.
+     */
+    public function validFormula(Request $request)
+    {
+        $expression = str_replace('x', 1, $request->formula);
+        try {
+            $language = new ExpressionLanguage();
+            $language->evaluate($expression);
+            echo "true";
+        } catch (\Exception $e) {
+            echo "false";
+        }
     }
 }

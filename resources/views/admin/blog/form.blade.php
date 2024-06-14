@@ -13,7 +13,7 @@
     </div>
     <div class="form-group col-md-6 mb-3">
         {{ Form::label('thumbnail') }}
-        {{ Form::file('thumbnail', ['class' => 'form-control dropify' . ($errors->has('thumbnail') ? ' is-invalid' : ''), 'placeholder' => 'Thumbnail','required','accept' => 'image/png,image/jpg,image/jpeg','data-default-file' => isset($blog->thumbnail) ? $blog->thumbnail : '','data-height' => '223', isset($blog->thumbnail) ? '' : 'required']) }}
+        {{ Form::file('thumbnail', ['class' => 'form-control dropify' . ($errors->has('thumbnail') ? ' is-invalid' : ''),'accept' => 'image/png,image/jpg,image/jpeg','data-default-file' => isset($blog->thumbnail) ? $blog->thumbnail : '','data-height' => '223', isset($blog->thumbnail) ? '' : 'required']) }}
         {!! $errors->first('thumbnail', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-12 mb-3">

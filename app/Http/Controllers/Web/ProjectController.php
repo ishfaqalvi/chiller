@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers\Web;
 
+use \Mpdf\Mpdf;
+use App\Models\Chiller;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use PhpOffice\PhpSpreadsheet\Writer\Pdf;
-use \Mpdf\Mpdf;
+use App\Interface\ChillerCalculationInterface;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class ProjectController extends Controller
 {
+    protected $chillerCalculation;
+
+    public function __construct(ChillerCalculationInterface $chillerCalculation){
+        $this->chillerCalculation = $chillerCalculation;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +33,7 @@ class ProjectController extends Controller
     public function create(Request $request)
     {
 
-        $chiller = !empty($request->session()->get('numberOfChillers')) ? $request->session()->get('numberOfChillers') : 1;
+        $chiller = !empty($request->session()->get('numberOfChillers')) ? $request->session()->get('numberOfChillers') : 2;
 
         return view('web.project.create', compact('chiller'));
     }
@@ -59,8 +66,19 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $data = $this->calculateResult($id);
-        $html = view('web.project.show', $data)->render();
+        $project = Project::find($id);
+
+        return view('web.project.show', compact('project'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function calculate($id)
+    {
+        $data = $this->chillerCalculation->calculation($id);
+
+        $html = view('web.project.calculate', $data)->render();
 
         $mpdf = new Mpdf();
         $mpdf->WriteHTML($html);
@@ -78,42 +96,5 @@ class ProjectController extends Controller
         $request->session()->put('numberOfChillers', $request->number);
 
         return response()->json(['message' => 'Chiller selected successfully!']);
-    }
-
-    /**
-     * Calculate the results.
-     */
-    public function calculateResult($id)
-    {
-        $project = Project::find($id);
-        $chillers = [];
-        foreach($project->details as $row)
-        {
-            $chillers[] = [
-                'make_model'   => $row->chiller->model->name,
-                'max_capacity' => $row->chiller_maximum_capacity,
-                'min_capacity' => $row->chiller_minimum_capacity,
-                'water_flow'   => $row->chilled_water_flow,
-                'iplv_25'      => $row->partial_load_25,
-                'iplv_50'      => $row->partial_load_50,
-                'iplv_75'      => $row->partial_load_75,
-                'iplv_100'     => $row->partial_load_100,
-            ];
-        }
-        $data = [
-            'project_number'    => $project->project_number,
-            'project_data'      => $project->created_at,
-            'project_customer'  => $project->customer->first_name.' '.$project->customer->last_name,
-            'building_min_load' => $project->building_minimum_load,
-            'building_max_load' => $project->building_maximum_load,
-            'water_differential'=> $project->chilled_water_differential,
-            'chillers'          => $chillers,
-            'load_steps' => [
-                ['step' => 0, 'upper_bound' => 0, 'chillers' => ['OFF', 'OFF']],
-                ['step' => 1, 'upper_bound' => 100, 'chillers' => ['ON', 'OFF']],
-                // Add more steps as needed
-            ],
-        ];
-        return $data;
     }
 }

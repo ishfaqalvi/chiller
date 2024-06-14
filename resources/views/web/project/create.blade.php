@@ -41,7 +41,6 @@
             <div class="chiler-name">
                 <label>NUMBER OF CHILLERS</label><br>
                 <select id="numberOfChiller" class="field-one" name="number_of_chillers" required>
-                    <option value="1" {{ $chiller == 1 ? 'selected' : ''}}>1</option>
                     <option value="2" {{ $chiller == 2 ? 'selected' : ''}}>2</option>
                     <option value="3" {{ $chiller == 3 ? 'selected' : ''}}>3</option>
                     <option value="4" {{ $chiller == 4 ? 'selected' : ''}}>4</option>

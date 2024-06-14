@@ -30,14 +30,14 @@
         </div>
         <div class="card-body d-flex justify-content-around">
             <div class="form-group">
-                <img class="rounded-2" src="{{ asset($user->image) }}" width="200px"/>
+                <img class="rounded-2" src="{{ asset($customer->image) }}" width="200px"/>
             </div>
             <div class="form-group d-flex flex-column">
                 <h5>User Information</h5>
                 <strong>Name:</strong>
-                {{ $user->name }}
+                {{ $customer->first_name .' '. $customer->last_name }}
                 <strong>Email:</strong>
-                {{ $user->email }}
+                {{ $customer->email }}
             </div>
         </div>
     </div>

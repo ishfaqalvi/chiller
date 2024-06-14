@@ -50,7 +50,36 @@ function chillers()
  *
  * @return \Illuminate\Http\Response
  */
+function chiller($id)
+{
+    return Chiller::find($id);
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
 function brands()
 {
     return Brand::pluck('name','id');
+}
+
+
+function powerSet($in)
+{
+    $count = count($in);
+    $members = pow(2, $count);
+    $return = [];
+
+    for ($i = 0; $i < $members; $i++) {
+        $b = sprintf("%0" . $count . "b", $i);
+        $out = [];
+        for ($j = 0; $j < $count; $j++) {
+            if ($b[$j] == '1') $out[] = $in[$j];
+        }
+        $return[] = $out;
+    }
+
+    return $return;
 }

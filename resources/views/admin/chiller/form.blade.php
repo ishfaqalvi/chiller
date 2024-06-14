@@ -1,17 +1,27 @@
 <div class="row">
     <div class="form-group col-lg-4 mb-3">
+        {{ Form::label('brand_id', 'Brand') }}
+        {{ Form::select('brand_id', brands(), $chiller->brand_id, ['class' => 'form-control select' . ($errors->has('brand_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+        {!! $errors->first('brand_id', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-4 mb-3">
+        {{ Form::label('model_id', 'Model') }}
+        {{ Form::select('model_id', [], $chiller->model_id, ['class' => 'form-control select' . ($errors->has('model_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required','disabled']) }}
+        {!! $errors->first('model_id', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-4 mb-3">
         {{ Form::label('name') }}
         {{ Form::text('name', $chiller->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name','required']) }}
         {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
     </div>
-    <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('model') }}
-        {{ Form::text('model', $chiller->model, ['class' => 'form-control' . ($errors->has('model') ? ' is-invalid' : ''), 'placeholder' => 'Model','required']) }}
-        {!! $errors->first('model', '<div class="invalid-feedback">:message</div>') !!}
+    <div class="form-group col-lg-8 mb-3">
+        {{ Form::label('formula') }}
+        {{ Form::text('formula', $chiller->formula, ['class' => 'form-control' . ($errors->has('formula') ? ' is-invalid' : ''), 'placeholder' => 'Formula']) }}
+        {!! $errors->first('formula', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('status') }}
-        {{ Form::select('status', ['Pending'=>'Pending','Approved'=>'Approved','Disabled'=>'Disabled'], $chiller->status ?? 'Approved', ['class' => 'form-control form-select' . ($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+        {{ Form::select('status', ['Pending'=>'Pending','Approved'=>'Approved','Disabled'=>'Disabled'], $chiller->status ?? 'Approved', ['class' => 'form-control form-select' . ($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required', 'id' => 'status']) }}
         {!! $errors->first('status', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use App\Models\User;
-use Auth;
 use DB;
+use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -191,11 +191,11 @@ class UserController extends Controller
      */
     public function checkEmail(Request $request)
     {
+        $query = User::query();
         if ($request->id) {
-            $user = User::where('id','!=',$request->id)->where('email', $request->email)->first();
-        }else{
-            $user = User::where('email', $request->email)->first();
+            $query->where('id','!=',$request->id);
         }
+        $user = $query->where('email', $request->email)->first();
 
         if($user){ echo "false"; }else{ echo "true";}
     }

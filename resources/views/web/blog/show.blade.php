@@ -29,14 +29,14 @@
                     @if (isset($previousBlog))
                         <a href="{{ route('web.blogs.show', $previousBlog->id) }}">Prevous Blog Post</a>
                     @else
-                        <a href="#">Prevous Blog Post</a>
+                        <a href="javascript:;">Prevous Blog Post</a>
                     @endif
                 </div>
                 <div class="next-btn">
                     @if (isset($nextBlog))
                         <a href="{{ route('web.blogs.show', $nextBlog->id) }}">Next Blog Post</a>
                     @else
-                        <a href="#">Next Blog Post</a>
+                        <a href="javascript:;">Next Blog Post</a>
                     @endif
                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </div>

@@ -44,6 +44,11 @@
 @section('script')
 <script>
     $(function(){
+        $('.select').select2();
+        var _token = $("input[name='_token']").val();
+        $.validator.addMethod("validFormula", function(value, element) {
+            return this.optional(element) || /^[0-9+\-*/^().x\s]+$/.test(value);
+        }, "Please enter a valid formula with numbers, math signs, and the variable 'x'.");
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -69,8 +74,59 @@
                 }else {
                     error.insertAfter(element);
                 }
+            },
+            rules: {
+                formula: {
+                    required: function(element) {
+                        return $("#status").val() === "Approved";
+                    },
+                    validFormula: true,
+                    "remote":
+                    {
+                        url: "{{ route('chillers.validFormula') }}",
+                        type: "POST",
+                        data: {
+                            _token:_token,
+                            formula: function() {
+                                return $("input[name='formula']").val();
+                            }
+                        },
+                    }
+                }
+            },
+            messages: {
+                formula: {
+                    required: "Please enter a formula",
+                    validFormula: "The formula can only contain numbers, math signs, and the variable 'x'.",
+                    remote: jQuery.validator.format("{0} must be a valid formula..")
+                }
             }
         });
+        var default_model_id = "{{ $chiller->model_id }}";
+        let id = $('select[name=brand_id]').val();
+        models_list(id, default_model_id);
+        $('select[name=brand_id]').change(function () {
+            let id = $(this).val();
+            models_list(id, 0);
+        });
+        function models_list(id,default_model_id){
+            $('select[name=model_id]').html('<option value="">--Select--</option>');
+            $('select[name=model_id]').attr('disabled',false);
+            $.get('/admin/chillers/get_models', {id: id}).done(function (result) {
+                let data = JSON.parse(result);
+                $.each(data, function (i, val) {
+                    if(val.id == default_model_id){
+                        $('select[name=model_id]').append($('<option>',
+                            {selected : 'selected', value : val.id, text : val.name}
+                        ));
+                    }else{
+                        $('select[name=model_id]').append($('<option>',
+                            {value : val.id,  text : val.name}
+                        ));
+                    }
+                });
+            });
+        }
     });
 </script>
 @endsection
